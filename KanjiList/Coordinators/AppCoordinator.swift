@@ -1,26 +1,23 @@
 import UIKit
 
 class AppCoordinator: Coordinator {
-    let kanjiStorage: KanjiStorage
     let window: UIWindow
     let rootViewController: UINavigationController
-    let allKanjiListCoordinator: AllKanjiListCoordinator
+    let loginCoordinator: LoginCoordinator
     
     init(window: UIWindow) {
         self.window = window
-        kanjiStorage = KanjiStorage()
         rootViewController = UINavigationController()
         rootViewController.navigationBar.prefersLargeTitles = true
         
-        allKanjiListCoordinator = AllKanjiListCoordinator(presenter: rootViewController,
-                                                          kanjiStorage: kanjiStorage)
+        loginCoordinator = LoginCoordinator(presenter: rootViewController)
     }
 }
 
 extension AppCoordinator {
     func start() {
         window.rootViewController = rootViewController
-        allKanjiListCoordinator.start()
+        loginCoordinator.start()
         window.makeKeyAndVisible()
     }
 }
